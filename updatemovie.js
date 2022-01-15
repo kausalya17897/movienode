@@ -1,4 +1,4 @@
-import express from "express";
+
 import { client } from "./index.js";
 
 
@@ -22,5 +22,5 @@ export{
     getMoviebyid,
     deletemovie,
     filtermovie,
-    updatemovie
+    updatemovie,
 }

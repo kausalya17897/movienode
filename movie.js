@@ -1,9 +1,9 @@
 import { filtermovie, fullmovie, getMoviebyid, deletemovie, updatemovie } from "./updatemovie.js";
-import { app as PORT } from "./index.js";
+
 import express from "express";
 //import {PORT} from "./index.js"
-
 const router=express.Router();
+
 router
 .route("/")
 .get( async (request, response) => {

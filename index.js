@@ -1,26 +1,26 @@
 //const { request, response } = require('express');
 //const express = require('express');//type:"common.js";
 
-import express, { response } from "express";
-import { ConnectionCheckedInEvent, MongoClient } from "mongodb";
+import express from "express";
+import { MongoClient } from "mongodb";
 import { EventEmitter } from 'events';
-import { request } from "http";
 import dotenv from "dotenv";
-dotenv.config();
+import { moviesRouter } from "./movie.js";
+dotenv.config();//npm i dotenv
 console.log(process.env);
-const eventEmitter = new EventEmitter();
+
 //const { param } = require('express/lib/request');
 //const timerEventEmitter = new EventEmitter();
 //timerEventEmitter.emit("update");
 const app = express();
 // listen to the event
-eventEmitter.on('myEvent', () => {
-  console.log('Data Received');
-});
+
 
 // publish an event
-eventEmitter.emit('myEvent');
+
+
 app.use(express.json());//middleware
+
 const PORT=process.env.PORT;
 /*const movies=[
     {id:"100",
@@ -100,16 +100,16 @@ const PORT=process.env.PORT;
    //one &only line change to make it online
     //const MONGO_URL="mongodb://localhost";
     const MONGO_URL=process.env.MONGO_URL;
-    
+    //heroku will auto assign available port
     async function createConnection(){
 const client=new MongoClient(MONGO_URL)
 await client.connect();//promise
 console.log("mongodb connected");
 return client;
     }
-    const client=await createConnection();
+    export const client=await createConnection();
 app.get('/',async(request, response) =>{
-  response.send("Hello World😊")
+  response.send("Hello World😊🤷‍♀️")
 });
 app.get("/movies",async(request,response)=>{
   //const {language,rating}=request.query;
@@ -126,11 +126,11 @@ app.get("/movies",async(request,response)=>{
  const filter=request.query;
  console.log(filter);
  if(filter.rating){
-   filter.rating=parseInt(filter.rating);
+   filter.rating=(filter.rating);
  }
   await filtermovie(filter, response);
 });
-
+app.use("./movies",moviesRouter)
 
 app.post("/movies",async(request,response)=>{
 
@@ -168,14 +168,12 @@ app.put("/movies/:id",async(request,response)=>{
   response.send(movieid)
  // : response.status(404).send({message:"no matching"});
 });
-eventEmitter.on('myEvent', () => {
-  console.log('Data Received2');
-});
+
+
 app.listen(process.env.PORT,()=>console.log("App is start in port",PORT));
 
-eventEmitter.on('myEvent', () => {
-  console.log('Data Received');
-});
+
+
 
 async function filtermovie(filter, response) {
   const filmovie = await client.db("mongofirst").collection("movie").find(filter).toArray(); //cursor to array
@@ -201,4 +199,5 @@ async function deletemovie(id) {
 async function getMoviebyid(id) {
   return await client.db("mongofirst").collection("movie").findOne({ id: id });
 }
+
 
