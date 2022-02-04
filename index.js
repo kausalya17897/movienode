@@ -6,19 +6,21 @@ import { MongoClient } from "mongodb";
 import { EventEmitter } from 'events';
 import dotenv from "dotenv";
 import { moviesRouter } from "./movie.js";
+import cors from 'cors';
+
+
 dotenv.config();//npm i dotenv
 console.log(process.env);
 
 //const { param } = require('express/lib/request');
-//const timerEventEmitter = new EventEmitter();
-//timerEventEmitter.emit("update");
+
 const app = express();
 // listen to the event
 
 
 // publish an event
 
-
+app.use(cors());// 3rd party middleware
 app.use(express.json());//middleware
 
 const PORT=process.env.PORT;
