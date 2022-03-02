@@ -1,13 +1,17 @@
 //const { request, response } = require('express');
 //const express = require('express');//type:"common.js";
-
 import express from "express";
 import { MongoClient } from "mongodb";
-import { EventEmitter } from 'events';
 import dotenv from "dotenv";
 import { moviesRouter } from "./movie.js";
+import { usersRouter } from "./users.js";
 import cors from 'cors';
-
+import bcrypt from 'bcrypt';
+import{fullmovie,
+  getMoviebyid,
+  deletemovie,
+  filtermovie,
+  updatemovie,} from 'updatemovie.js'
 
 dotenv.config();//npm i dotenv
 console.log(process.env);
@@ -133,6 +137,7 @@ app.get("/movies",async(request,response)=>{
   await filtermovie(filter, response);
 });
 app.use("./movies",moviesRouter)
+app.use("./users",usersRouter)
 
 app.post("/movies",async(request,response)=>{
 
