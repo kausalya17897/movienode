@@ -1,4 +1,4 @@
-import { filtermovie, fullmovie, getMoviebyid, deletemovie, updatemovie } from "./updatemovie.js";
+import { filtermovie, fullmovie, getMoviebyid, deletemovie, uupdatemovie } from "./updatemovie.js";
 
 import express from "express";
 //import {PORT} from "./index.js"

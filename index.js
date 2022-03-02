@@ -11,7 +11,7 @@ import{fullmovie,
   getMoviebyid,
   deletemovie,
   filtermovie,
-  updatemovie,} from 'updatemovie.js'
+  uupdatemovie,} from 'updatemovie.js'
 
 dotenv.config();//npm i dotenv
 console.log(process.env);
